@@ -58,7 +58,7 @@
   // 発信処理
   document.getElementById('make-call').onclick = () => {
     const theirID = document.getElementById('their-id').value;
-    const mediaConnection = peer.call(theirID, localStream,{videoCodec: 'VP9', videoBandwidth: 48000});
+    const mediaConnection = peer.call(theirID, localStream,{videoCodec: 'H264', videoBandwidth: 48000});
     setEventListener(mediaConnection);
  };
 
@@ -74,7 +74,7 @@
 
   //着信処理
   peer.on('call', mediaConnection => {
-    mediaConnection.answer(localStream, {videoCodec: 'VP9', videoBandwidth: 48000});
+    mediaConnection.answer(localStream, {videoCodec: 'H264', videoBandwidth: 48000});
     setEventListener(mediaConnection);
   });
 

@@ -22,7 +22,8 @@
 	{ audio: false,
 	  video: {
     		width: { min: 5760 },
-    		height: { min: 1080 }
+    		height: { min: 1080 },
+		frameRate:30
 		}, 
 	})
     .then( stream => {
@@ -58,7 +59,7 @@
   // 発信処理
   document.getElementById('make-call').onclick = () => {
     const theirID = document.getElementById('their-id').value;
-    const mediaConnection = peer.call(theirID, localStream,{videoCodec: 'VP9', videoBandwidth 16000});
+    const mediaConnection = peer.call(theirID, localStream,{videoCodec: 'VP9', videoBandwidth: 16000});
     setEventListener(mediaConnection);
  };
 
@@ -74,7 +75,7 @@
 
   //着信処理
   peer.on('call', mediaConnection => {
-    mediaConnection.answer(localStream, {videoCodec: 'VP9' , videoBandwidth 16000});
+    mediaConnection.answer(localStream, {videoCodec: 'VP9' , videoBandwidth: 16000});
     setEventListener(mediaConnection);
   });
 

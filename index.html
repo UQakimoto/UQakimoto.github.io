@@ -20,10 +20,7 @@
   // カメラ映像取得
   navigator.mediaDevices.getUserMedia(
 	{ audio: false,
-	  video: {
-    		width: { min: 5184 },
-    		height: { min: 1080 }
-		}, 
+	  video: true, 
 	})
     .then( stream => {
     // 成功時にvideo要素にカメラ映像をセットし、再生

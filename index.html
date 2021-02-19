@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,8 +11,8 @@
 <body>
   <button id="make-call">発信</button>
   <textarea id="their-id"></textarea>
-  <video id="their-video" height="1080px" width="5184px"autoplay muted playsinline></video>
-  <video id="my-video" height="1080px" width="5184px" autoplay muted playsinline></video>
+  <video id="their-video" height="1080px" width="5760px"autoplay muted playsinline></video>
+  <video id="my-video" height="1080px" width="5760px" autoplay muted playsinline></video>
   <p id="my-id"></p>
 </body>
 
@@ -21,7 +23,7 @@
   navigator.mediaDevices.getUserMedia(
 	{ audio: false,
 	  video: {
-    		width: { min: 5184 },
+    		width: { min: 5760 },
     		height: { min: 1080 }
 		}, 
 	})

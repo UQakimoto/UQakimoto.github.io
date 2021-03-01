@@ -17,9 +17,17 @@
   // カメラ映像取得
   navigator.mediaDevices.getUserMedia(
 	{ audio: false,
-	  video: false)
+	  video: {
+    		width: { min: 5760 },
+    		height: { min: 1200 }
+		}, 
+	})
     .then( stream => {
-    // カメラ映像を返せるように、グローバル変数に保存しておく
+    // 成功時にvideo要素にカメラ映像をセットし、再生
+    const videoElm = document.getElementById('my-video');
+    videoElm.srcObject = stream;
+    videoElm.play();
+    // 着信時に相手にカメラ映像を返せるように、グローバル変数に保存しておく
     localStream = stream;
   }).catch( error => {
     // 失敗時にはエラーログを出力

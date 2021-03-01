@@ -13,8 +13,8 @@
   IDを入力してください：<br>
   <input type="text" id="their-id"><br>
   <button id="make-call">発信</button><br>
-  <video id="their-video" height="1080px" width="5760px"autoplay muted playsinline></video>
-  <video id="my-video" height="1080px" width="5760px" autoplay muted playsinline></video>
+  <video id="their-video" height="1080px" width="5184px"autoplay muted playsinline></video>
+  <video id="my-video" height="1080px" width="5184px" autoplay muted playsinline></video>
   <p id="my-id"></p>
 </body>
 
@@ -25,7 +25,7 @@
   navigator.mediaDevices.getUserMedia(
 	{ audio: false,
 	  video: {
-    		width: { min: 5760 },
+    		width: { min: 5184 },
     		height: { min: 1080 }
 		}, 
 	})

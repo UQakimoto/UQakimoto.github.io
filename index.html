@@ -69,6 +69,11 @@
       videoElm.play();
     });
   }
+  //着信処理
+  peer.on('call', mediaConnection => {
+    mediaConnection.answer(localStream, {videoCodec: 'VP9' , videoBandwidth: 16000});
+    setEventListener(mediaConnection);
+  });
 
 </script>
 </html>

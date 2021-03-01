@@ -1,0 +1,86 @@
+
+
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.webrtc.ecl.ntt.com/skyway-4.3.0.js"></script>
+  <title>SkyWayチュートリアル</title>
+</head>
+<body>
+  IDを入力してください：<br>
+  <input type="text" id="their-id"><br>
+  <button id="make-call">発信</button><br>
+  <video id="their-video" height="1080px" width="5760px"autoplay muted playsinline></video>
+  <video id="my-video" height="1080px" width="5760px" autoplay muted playsinline></video>
+  <p id="my-id"></p>
+</body>
+
+<script>
+  let localStream;
+
+  // カメラ映像取得
+  navigator.mediaDevices.getUserMedia(
+	{ audio: false,
+	  video: {
+    		width: { min: 5760 },
+    		height: { min: 1080 }
+		}, 
+	})
+    .then( stream => {
+    // 成功時にvideo要素にカメラ映像をセットし、再生
+    const videoElm = document.getElementById('my-video');
+    videoElm.srcObject = stream;
+    videoElm.play();
+    // 着信時に相手にカメラ映像を返せるように、グローバル変数に保存しておく
+    localStream = stream;
+  }).catch( error => {
+    // 失敗時にはエラーログを出力
+    console.error('mediaDevice.getUserMedia() error:', error);
+    return;
+  });
+
+
+  //Peer作成
+  const peer = new Peer('uQuestSkyWay',{
+    key: "bae7adad-07c3-4fee-a194-9fe29559c740",
+    debug: 3
+  });
+  //PeerID取得
+  peer.on('open', () => {
+    document.getElementById('my-id').textContent = peer.id;
+  });
+  peer.on('error', err => {
+    alert(err.message);
+  });
+  peer.on('close', () => {
+  alert('通信が切断しました。');
+  });
+
+  // 発信処理
+  document.getElementById('make-call').onclick = () => {
+    const theirID = document.getElementById('their-id').value;
+    const mediaConnection = peer.call(theirID, localStream,{videoCodec: 'VP9', videoBandwidth: 16000});
+    setEventListener(mediaConnection);
+ };
+
+  // イベントリスナを設置する関数
+  const setEventListener = mediaConnection => {
+    mediaConnection.on('stream', stream => {
+      // video要素にカメラ映像をセットして再生
+      const videoElm = document.getElementById('their-video')
+      videoElm.srcObject = stream;
+      videoElm.play();
+    });
+  }
+
+  //着信処理
+  peer.on('call', mediaConnection => {
+    mediaConnection.answer(localStream, {videoCodec: 'VP9' , videoBandwidth: 16000});
+    setEventListener(mediaConnection);
+  });
+
+</script>
+</html>

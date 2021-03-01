@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -13,7 +14,6 @@
   発信ボタンを押下してください。<br>
   <button id="make-call">発信</button><br>
   <video id="their-video" height="1080px" width="5760px"autoplay muted playsinline></video>
-  <p id="my-id"></p>
 </body>
 
 <script>
@@ -46,7 +46,6 @@
   });
   //PeerID取得
   peer.on('open', () => {
-    document.getElementById('my-id').textContent = peer.id;
   });
   peer.on('error', err => {
     alert(err.message);

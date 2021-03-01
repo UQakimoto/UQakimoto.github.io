@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -21,17 +17,9 @@
   // カメラ映像取得
   navigator.mediaDevices.getUserMedia(
 	{ audio: false,
-	  video: {
-    		width: { min: 5760 },
-    		height: { min: 1200 }
-		}, 
-	})
+	  video: false)
     .then( stream => {
-    // 成功時にvideo要素にカメラ映像をセットし、再生
-    const videoElm = document.getElementById('my-video');
-    videoElm.srcObject = stream;
-    videoElm.play();
-    // 着信時に相手にカメラ映像を返せるように、グローバル変数に保存しておく
+    // カメラ映像を返せるように、グローバル変数に保存しておく
     localStream = stream;
   }).catch( error => {
     // 失敗時にはエラーログを出力
@@ -39,19 +27,10 @@
     return;
   });
 
-//Peer作成
+  //Peer作成
   const peer = new Peer({
     key: "bae7adad-07c3-4fee-a194-9fe29559c740",
     debug: 3
-  });
-  //PeerID取得
-  peer.on('open', () => {
-  });
-  peer.on('error', err => {
-    alert(err.message);
-  });
-  peer.on('close', () => {
-  alert('通信が切断しました。');
   });
 
   // 発信処理

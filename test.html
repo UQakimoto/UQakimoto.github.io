@@ -13,18 +13,18 @@
 </body>
 
 <script>
-  let localStream;
+//  let localStream;
   // カメラ映像取得
-  navigator.mediaDevices.getUserMedia(
-	{ audio: false, video: false} )
-    .then( stream => {
+//  navigator.mediaDevices.getUserMedia(
+//	{ audio: false, video: false} )
+//    .then( stream => {
     // 着信時に相手にカメラ映像を返せるように、グローバル変数に保存しておく
-    localStream = stream;
-  }).catch( error => {
+//    localStream = stream;
+//  }).catch( error => {
     // 失敗時にはエラーログを出力
-    console.error('mediaDevice.getUserMedia() error:', error);
-    return;
-  });
+//    console.error('mediaDevice.getUserMedia() error:', error);
+//    return;
+//  });
 
   //Peer作成
   const peer = new Peer({

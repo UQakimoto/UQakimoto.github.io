@@ -24,17 +24,9 @@
   window.onload = function() {
     const theirID = 'uQuestSkyWay';
     const mediaConnection = peer.call(theirID, localStream,{videoCodec: 'VP9', videoBandwidth: 16000});
-    setEventListener(mediaConnection);
-  }
-
-  // イベントリスナを設置する関数
-  const setEventListener = mediaConnection => {
-    mediaConnection.on('stream', stream => {
-      // video要素にカメラ映像をセットして再生
       const videoElm = document.getElementById('their-video')
       videoElm.srcObject = stream;
       videoElm.play();
-    });
   }
 
 </script>

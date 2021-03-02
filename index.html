@@ -13,8 +13,6 @@
 </body>
 
 <script>
-  let localStream;
-
   //Peer作成
   const peer = new Peer({
     key: "bae7adad-07c3-4fee-a194-9fe29559c740",
@@ -24,7 +22,7 @@
   // 発信処理
   document.getElementById('make-call').onclick = () => {
     const theirID = 'uQuestSkyWay';
-    const mediaConnection = peer.call(theirID, localStream,{videoCodec: 'VP9', videoBandwidth: 16000});
+    const mediaConnection = peer.call(theirID,{videoCodec: 'VP9', videoBandwidth: 16000});
     setEventListener(mediaConnection);
  };
 

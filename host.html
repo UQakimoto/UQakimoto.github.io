@@ -10,12 +10,7 @@
   <title>SkyWayチュートリアル</title>
 </head>
 <body>
-  IDを入力してください：<br>
-  <input type="text" id="their-id"><br>
-  <button id="make-call">発信</button><br>
-  <video id="their-video" height="1080px" width="5184px"autoplay muted playsinline></video>
   <video id="my-video" height="1080px" width="5184px" autoplay muted playsinline></video>
-  <p id="my-id"></p>
 </body>
 
 <script>
@@ -42,29 +37,11 @@
     return;
   });
 
-
   //Peer作成
   const peer = new Peer('uQuestSkyWay',{
     key: "bae7adad-07c3-4fee-a194-9fe29559c740",
     debug: 3
   });
-  //PeerID取得
-  peer.on('open', () => {
-    document.getElementById('my-id').textContent = peer.id;
-  });
-  peer.on('error', err => {
-    alert(err.message);
-  });
-  peer.on('close', () => {
-  alert('通信が切断しました。');
-  });
-
-  // 発信処理
-  document.getElementById('make-call').onclick = () => {
-    const theirID = document.getElementById('their-id').value;
-    const mediaConnection = peer.call(theirID, localStream,{videoCodec: 'VP9', videoBandwidth: 16000});
-    setEventListener(mediaConnection);
- };
 
   // イベントリスナを設置する関数
   const setEventListener = mediaConnection => {

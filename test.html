@@ -13,19 +13,20 @@
 </body>
 
 <script>
-  let localStream;
+//  let localStream;
 
+
+  // 発信処理
+window.onload = ()=> {
+  let localStream;
   //Peer作成
   const peer = new Peer({
     key: "bae7adad-07c3-4fee-a194-9fe29559c740",
     debug: 3
   });
-
-  // 発信処理
-  window.onload = function() {
-    const theirID = 'uQuestSkyWay';
-    const mediaConnection = peer.call(theirID, localStream,{videoCodec: 'VP9', videoBandwidth: 16000});
-    setEventListener(mediaConnection);
+  const theirID = 'uQuestSkyWay';
+  const mediaConnection = peer.call(theirID, localStream,{videoCodec: 'VP9', videoBandwidth: 16000});
+  setEventListener(mediaConnection);
  };
 
   // イベントリスナを設置する関数

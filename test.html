@@ -7,14 +7,11 @@
   <title>SkyWayチュートリアル</title>
 </head>
 <body>
-//  発信ボタンを押下してください。<br>
-//  <button id="make-call">発信</button><br>
   <video id="their-video" height="1080px" width="5760px"autoplay muted playsinline></video>
 </body>
 
 <script>
   let localStream;
-  const theirID = 'uQuestSkyWay';
 
   //Peer作成
   const peer = new Peer({
@@ -22,10 +19,18 @@
     debug: 3
   });
 
+  const theirID = 'uQuestSkyWay';
   const mediaConnection = peer.call(theirID, localStream,{videoCodec: 'VP9', videoBandwidth: 16000});
-  const videoElm = document.getElementById('their-video')
-  videoElm.srcObject = stream;
-  videoElm.play();
+  setEventListener(mediaConnection);
+
+  // イベントリスナを設置する関数
+  const setEventListener = mediaConnection => {
+    mediaConnection.on('stream', stream => {
+      // video要素にカメラ映像をセットして再生
+      const videoElm = document.getElementById('their-video')
+      videoElm.srcObject = stream;
+      videoElm.play();
+    });
   }
 
 </script>

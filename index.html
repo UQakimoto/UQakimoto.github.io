@@ -22,7 +22,7 @@
   // 発信処理
   document.getElementById('make-call').onclick = () => {
     const theirID = 'uQuestSkyWay';
-    const mediaConnection = peer.call(theirID,{videoCodec: 'VP9', videoBandwidth: 16000});
+    const mediaConnection = peer.call(theirID);
     setEventListener(mediaConnection);
  };
 
